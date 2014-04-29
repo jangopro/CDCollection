@@ -1,11 +1,11 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Projet de spécialisation pour la TIM
 
-Things you may want to cover:
+Application Web permettant de consulter des discographies de groupes de musique et de noter ses albums qu'on a aimé ou détesté.
 
-* Ruby version
+
+* Ruby version: 1.9.3
 
 * System dependencies
 

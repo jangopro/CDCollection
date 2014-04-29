@@ -1,4 +1,8 @@
 class AuthenticationController < ApplicationController
+
+  #À utiliser lorsqu'on doit être logué pour voir le contenu
+  #before_filter :authenticate_user, :only => [:account_settings, :set_account_info]
+
   def sign_in
     @user = User.new
   end
@@ -26,9 +30,33 @@ class AuthenticationController < ApplicationController
 
   end
 
+  def new_user
+    @user = User.new
+  end
+
+  def register
+    @user = User.new(user_params)
+
+    if @user.valid?
+      @user.save
+      session[:user_id] = @user.id
+      flash[:notice] = 'Welcome.'
+      redirect_to :root
+    else
+      render :action => "new_user"
+    end
+  end
+
   def signed_out
     session[:user_id] = nil
     flash[:notice] = "You have been signed out."
     redirect_to :root
   end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :salt, :encrypted_password)
+  end
+
 end

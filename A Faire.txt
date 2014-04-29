@@ -1,0 +1,2 @@
+-> Validation de confirmation mot de passe
+-> Validation longueur Username

@@ -1,13 +1,27 @@
 class User < ActiveRecord::Base
-  attr_accessor :password
+  attr_accessor :password, :password_confirmation
   before_save :encrypt_password
 
-  validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
-  validates_presence_of :email, :on => :create
-  validates_presence_of :username, :on => :create
-  validates_uniqueness_of :email
+  #validation de nom d'utilisateur
   validates_uniqueness_of :username
+  validates_presence_of :username, :on => :create
+
+  #validation de mot de passe
+  has_secure_password
+  validates :password, length: { minimum: 6 }
+
+  #validation
+  validates_presence_of :email, :on => :create
+  validates_uniqueness_of :email
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+
+
+  def initialize(attributes = {})
+    super # must allow the active record to initialize!
+    attributes.each do |name, value|
+      send("#{name}=", value)
+    end
+  end
 
   def self.authenticate_by_email(email, password)
     user = find_by_email(email)

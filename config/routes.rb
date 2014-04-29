@@ -9,5 +9,6 @@ CDCollection::Application.routes.draw do
   get "password_sent" => "authentication#password_sent"
 
   post "sign_in" => "authentication#login"
+  post "new_user" => "authentication#register"
 
 end
