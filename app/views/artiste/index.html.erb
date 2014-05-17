@@ -1,0 +1,5 @@
+<h2>Liste des artistes</h2>
+
+<% @artistes.each do |artiste| %>
+      <p><%= link_to artiste.nom, fiche_artiste_path(:id => artiste.id) %></p>
+<% end %>

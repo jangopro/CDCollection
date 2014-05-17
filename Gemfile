@@ -35,6 +35,9 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', :require=>'bcrypt'
 
+# Musixmatch Gem
+gem 'musix_match'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

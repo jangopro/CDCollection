@@ -1,0 +1,29 @@
+<h2><%= @artiste.nom %></h2>
+
+<h3>LP</h3>
+<ul>
+  <% @albums.each do |album| %>
+        <li><%= album.name %></li>
+           <%= album.anneeSortie %><br />
+      <p>Averate rating</p>
+      <div id="star"></div>
+      <p>Your rating</p>
+      <div id="user_star"></div>
+        <a href="#">+ Collection</a><br />
+        <a href="#">+ Plus tard</a>
+   <%end%>
+</ul>
+
+<h3>EP</h3>
+<ul>
+  <% @eps.each do |ep| %>
+      <li><%= ep.name %></li>
+      <%= ep.anneeSortie %><br />
+      <p>Averate rating</p>
+      <div id="star"></div>
+      <p>Your rating</p>
+      <div id="user_star"></div>
+      <a href="#">+ Collection</a><br />
+      <a href="#">+ Plus tard</a>
+  <%end%>
+</ul>

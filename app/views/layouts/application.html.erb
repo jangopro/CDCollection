@@ -11,29 +11,34 @@
 </head>
 <body>
 <!--HEADER-->
-<header class="navbar navbar-fixed-top navbar-inverse">
+<!--<header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "sample app", '#', id: "logo" %>
+      <h1>CDCollection</h1>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Albums notés",    '#' %></li>
-          <li><%= link_to "Ma collection",    '#' %></li>
-          <li><%= link_to "À écouter plus tard", '#' %></li>
+          <li><%= link_to "Albums notés",'#' %></li>
+          <li><%= link_to "Ma collection", '#' %></li>
+          <li><%= link_to "À écouter plus tard",'#' %></li>
         </ul>
       </nav>
     </div>
   </div>
-</header>
 
+</header>-->
+
+<%= form_tag(artiste_index_path, method: "get") do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Rechercher", :name => nil %>
+<% end %>
 
 <p>
   <% if current_user %>
-      Logged in as <%= current_user.username %>.
-      <%= link_to "Sign Out", signed_out_path %>
+      Connecté en tant que <%= current_user.username %>.
+      <%= link_to "Se déconnecter", signed_out_path %>
   <% else %>
-      <%= link_to "Sign up", new_user_path %> or
-      <%= link_to "Sign In", sign_in_path %>
+      <%= link_to "S'inscrire", new_user_path %> or
+      <%= link_to "Se connecter", sign_in_path %>
   <% end %>
 </p>
 
