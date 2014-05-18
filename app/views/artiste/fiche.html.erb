@@ -1,23 +1,43 @@
 <h2><%= @artiste.nom %></h2>
 
 <h3>LP</h3>
-<ul>
+<div class="liste-albums">
   <% @albums.each do |album| %>
-        <li><%= album.name %></li>
-           <%= album.anneeSortie %><br />
-      <p>Averate rating</p>
-      <div id="star"></div>
-      <p>Your rating</p>
-      <div id="user_star"></div>
-        <a href="#">+ Collection</a><br />
-        <a href="#">+ Plus tard</a>
+      <div>
+            <img src="/assets/albums/<%= album.id %>.jpg" width="125">
+            <h4><%= album.name %></h4>
+               <%= album.anneeSortie %><br />
+          <p>Averate rating</p>
+          <div class="star">
+            <script>
+                $('.star').raty({
+                    readOnly: true,
+                    path: '/assets',
+                    score: 1
+                });
+            </script>
+          </div>
+          <p>Your rating</p>
+          <div class="user_star">
+            <script>
+                $('.user_star').raty({
+                    path: '/assets',
+                    half: true,
+                    score: 3
+                });
+            </script>
+          </div>
+            <a href="#">+ Collection</a><br />
+            <a href="#">+ Plus tard</a>
+      </div>
    <%end%>
-</ul>
+</div>
 
 <h3>EP</h3>
-<ul>
+<div class="liste-albums">
   <% @eps.each do |ep| %>
-      <li><%= ep.name %></li>
+      <img src="/assets/albums/<%= ep.id %>.jpg" width="125">
+      <h4><%= ep.name %></h4>
       <%= ep.anneeSortie %><br />
       <p>Averate rating</p>
       <div id="star"></div>
@@ -26,4 +46,4 @@
       <a href="#">+ Collection</a><br />
       <a href="#">+ Plus tard</a>
   <%end%>
-</ul>
+</div>
