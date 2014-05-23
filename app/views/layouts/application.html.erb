@@ -34,7 +34,7 @@
 
 <p>
   <% if current_user %>
-      Connecté en tant que <%= current_user.username %>.
+      Connecté en tant que <%= link_to(current_user.username, profil_path(:id => current_user.id))%>.
       <%= link_to "Se déconnecter", signed_out_path %>
   <% else %>
       <%= link_to "S'inscrire", new_user_path %> or

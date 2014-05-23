@@ -1,0 +1,60 @@
+<h2><%= @user.username %></h2>
+
+<p>Albums notés: <%= @rating.count %></p>
+<p>Collection: </p>
+<p>À écouter plus tard: </p>
+
+<% if @rating.count != 0 %>
+    <h2>Notes</h2>
+
+     <% @titreRating= nil %>
+      <% @rating.each do |rating| %>
+
+        <% if @titreRating != rating.rating %>
+            </table>
+            <h3><%= rating.rating %></h3>
+            <table>
+              <tr>
+                <th>Album</th>
+                <th>Artistes</th>
+                <th></th>
+                <th></th>
+              </tr>
+
+        <%end%>
+        <% @titreRating= rating.rating %>
+
+              <tr>
+                <td><%= rating.album.name %></td>
+                <td><%= rating.album.artiste.nom %></td>
+                <td> <div data-number= <%= rating.id %> data-score=  <%= rating.rating %> class="user_star">
+                  <script>
+                      $('.user_star').raty({
+                          path: '/assets',
+                          half: true,
+                          score: function() {
+                              return $(this).attr('data-score');
+                          },
+                          click: function(score, evt) {
+                              $.ajax({
+
+                                  url: '/ratings/' +  $(this).attr('data-number'),
+                                  type: 'PATCH',
+                                  data: { rating: score }
+                              }).done(function (data){});
+                          }
+                      });
+                  </script>
+                </div></td>
+              </tr>
+
+      <%end%>
+    </table>
+    <% else %>
+    <p>Pour noter des albums ou pour remplir vos listes,
+      commencer par taper un nom d'artiste que vous voulez dans la barre de recherche.
+      Ensuite, côter un album ou cliquer sur le bouton Collection pour l'ajouter dans la liste "Ma collection"
+      ou sur le bouton Plus tard pour l'ajouter dans la liste "À écouter plus tard"</p>
+
+<%end%>
+

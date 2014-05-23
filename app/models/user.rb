@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :ratings
+
   attr_accessor :password, :password_confirmation
   before_save :encrypt_password
 
