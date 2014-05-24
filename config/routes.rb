@@ -31,5 +31,7 @@ CDCollection::Application.routes.draw do
   post "suppRating" => "profil#suppRating"
   post "changerListe" => "profil#changerListe"
 
+  delete "supprimerListe" => "ligneliste#destroy"
+
 
 end

@@ -34,8 +34,7 @@
                </script>
                </div>
             </td>
-            <td></td>
-            <td></td>
+            <td><%= link_to "Supprimer", supprimerListe_path(:id => element.id), :method => :delete, :confirm => "Êtes-vous sûr de vouloir supprimer  #{element.album.name} de la liste?" %></td>
           </tr>
       <%end%>
     </table>

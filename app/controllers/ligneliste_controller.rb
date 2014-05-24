@@ -12,4 +12,11 @@ class LignelisteController < ApplicationController
     end
   end
 
+  def destroy
+    session[:return_to] ||= request.referer
+    @liste = LigneListe.find(params[:id])
+    @liste.destroy
+    redirect_to session.delete(:return_to)
+  end
+
 end
