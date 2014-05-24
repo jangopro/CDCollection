@@ -66,12 +66,14 @@
               <h4><%= ep.name %></h4>
               <%= ep.anneeSortie %><br />
             <p>Moyenne des usagers</p>
-            <div class="star">
+            <div class="star" data-score=<%= ep.average_rating(ep.id) %>>
               <script>
                   $('.star').raty({
                       readOnly: true,
                       path: '/assets',
-                      score: 0
+                      score:  function() {
+                          return $(this).attr('data-score');
+                      }
                   });
               </script>
             </div>
