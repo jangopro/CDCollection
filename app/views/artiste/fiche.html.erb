@@ -9,12 +9,14 @@
             <h4><%= album.name %></h4>
                <%= album.anneeSortie %><br />
           <p>Moyenne des usagers</p>
-          <div class="star">
+          <div class="star" data-score=<%= album.average_rating(album.id) %>>
             <script>
                 $('.star').raty({
                     readOnly: true,
                     path: '/assets',
-                    score: 0
+                    score:  function() {
+                        return $(this).attr('data-score');
+                    }
                 });
             </script>
           </div>
@@ -38,52 +40,64 @@
                  });
             </script>
           </div>
-            <a href="#">+ Collection</a><br />
-            <a href="#">+ Plus tard</a>
+            <%= if LigneListe.where(:user_id => current_user.id, :album_id => album.id, :typeListe => 1).blank?
+                  link_to "+ Collection",{:controller=>"ligneliste", :action=>"create", :album_id=>album.id,
+                                          :user_id => current_user.id, :typeListe=>1, :id_artiste =>album.artiste_id}, :method=> :post
+                else
+                    print ("X Collection")
+        end%><br />
+        <%= if LigneListe.where(:user_id => current_user.id, :album_id => album.id, :typeListe => 2).blank?
+             link_to "+ Plus tard",{:controller=>"ligneliste", :action=>"create", :album_id=>album.id,
+                                    :user_id => current_user.id, :typeListe=>2, :id_artiste =>album.artiste_id}, :method=> :post
+            else
+              print ("X Plus tard")
+            end%>
       </div>
    <%end%>
 </div>
+<% if @eps.size != 0 %>
+    <h3>EP</h3>
 
-<h3>EP</h3>
-<div class="liste-albums">
-  <% @eps.each do |ep| %>
-      <div>
-          <%  rating = ep.get_rating(ep.id, current_user.id)%>
-          <img src="/assets/albums/<%= ep.id %>.jpg" width="125">
-          <h4><%= ep.name %></h4>
-          <%= ep.anneeSortie %><br />
-        <p>Moyenne des usagers</p>
-        <div class="star">
-          <script>
-              $('.star').raty({
-                  readOnly: true,
-                  path: '/assets',
-                  score: 0
-              });
-          </script>
-        </div>
-        <p>Ma note</p>
-        <div data-number= <%= rating.id %> data-score=  <%= rating.rating %> class="user_star">
-          <script>
-              $('.user_star').raty({
-                  path: '/assets',
-                  half: true,
-                  score: function() {
-                      return $(this).attr('data-score');
-                  },
-                  click: function(score, evt) {
-                      $.ajax({
+    <div class="liste-albums">
+      <% @eps.each do |ep| %>
+          <div>
+              <%  rating = ep.get_rating(ep.id, current_user.id)%>
+              <img src="/assets/albums/<%= ep.id %>.jpg" width="125">
+              <h4><%= ep.name %></h4>
+              <%= ep.anneeSortie %><br />
+            <p>Moyenne des usagers</p>
+            <div class="star">
+              <script>
+                  $('.star').raty({
+                      readOnly: true,
+                      path: '/assets',
+                      score: 0
+                  });
+              </script>
+            </div>
+            <p>Ma note</p>
+            <div data-number= <%= rating.id %> data-score=  <%= rating.rating %> class="user_star">
+              <script>
+                  $('.user_star').raty({
+                      path: '/assets',
+                      half: true,
+                      score: function() {
+                          return $(this).attr('data-score');
+                      },
+                      click: function(score, evt) {
+                          $.ajax({
 
-                          url: '/ratings/' +  $(this).attr('data-number'),
-                          type: 'PATCH',
-                          data: { rating: score }
-                      }).done(function (data){});
-                  }
-              });
-          </script>
-        </div>
-          <a href="#">+ Collection</a><br />
-          <a href="#">+ Plus tard</a>
-      </div>
-  <%end%>
+                              url: '/ratings/' +  $(this).attr('data-number'),
+                              type: 'PATCH',
+                              data: { rating: score }
+                          }).done(function (data){});
+                      }
+                  });
+              </script>
+            </div>
+              <a href="#">+ Collection</a><br />
+              <a href="#">+ Plus tard</a>
+          </div>
+      <%end%>
+<%end%>
 </div>

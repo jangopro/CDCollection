@@ -1,14 +1,16 @@
 CDCollection::Application.routes.draw do
+  root :to=>"home#index"
+  resources :ratings, only: :update
+  resources :users
+  resources :ligneliste, only: :create
 
   get "profil/show"
   get "profil/collection"
   get "profil/wantlist"
-  resources :ratings, only: :update
-  resources :users
+
 
   get "ratings/update"
   get "artiste/index"
-  root :to=>"home#index"
 
   get "sign_in" => "authentication#sign_in"
   get "signed_out" => "authentication#signed_out"
@@ -19,13 +21,15 @@ CDCollection::Application.routes.draw do
 
   get "profil" => "profil#show"
   get "collection" => "profil#collection"
-  get "plus-tard" => "profil#wantlist"
+  get "plus_tard" => "profil#wantlist"
 
   get "fiche_artiste" => "artiste#fiche"
 
   post "sign_in" => "authentication#login"
   post "new_user" => "authentication#register"
 
+  post "suppRating" => "profil#suppRating"
+  post "changerListe" => "profil#changerListe"
 
 
 end

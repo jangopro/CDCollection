@@ -1,17 +1,41 @@
-<h2>Ma collecction</h2>
-<table>
-  <tr>
-    <th>Album</th>
-    <th>Artiste</th>
-    <th>Note</th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
+<h2>Ma collection</h2>
+
+    <table>
+      <tr>
+        <th>Album</th>
+        <th>Artiste</th>
+        <th>Note</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @liste.each do |element| %>
+          <%  rating = element.album.get_rating(element.album.id, current_user.id)%>
+          <tr>
+            <td><%= element.album.name %></td>
+            <td><%= element.album.artiste.nom %></td>
+            <td>
+              <div data-number= <%= rating.id %> data-score=  <%= rating.rating %> class="user_star">
+              <script>
+                  $('.user_star').raty({
+                      path: '/assets',
+                      half: true,
+                      score: function() {
+                          return $(this).attr('data-score');
+                      },
+                      click: function(score, evt) {
+                          $.ajax({
+
+                              url: '/ratings/' +  $(this).attr('data-number'),
+                              type: 'PATCH',
+                              data: { rating: score }
+                          }).done(function (data){});
+                      }
+                  });
+               </script>
+               </div>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+      <%end%>
+    </table>

@@ -1,2 +1,7 @@
 -> Validation de confirmation mot de passe
 -> Validation longueur Username
+-> Suppression dans les listes
+-> Mettre en ligne
+-> Les .5 des notes
+-> Pas Ep, pas de titre
+-> Message d'erreur en français

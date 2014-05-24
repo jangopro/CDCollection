@@ -6,10 +6,13 @@
     <th></th>
     <th></th>
   </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+  <% @liste.each do |element| %>
+      <tr>
+        <td><%= element.album.name %></td>
+        <td><%= element.album.artiste.nom %></td>
+        <td><%= link_to "C'est fait", changerListe_path(:id => element.id), :method => :post %></td>
+        <td></td>
+      </tr>
+  <%end%>
+
 </table>
