@@ -1,5 +1,5 @@
 <h2>À écouter plus tard</h2>
-<table>
+<table class="table table-striped">
   <tr>
     <th>Album</th>
     <th>Artiste</th>
@@ -10,8 +10,8 @@
       <tr>
         <td><%= element.album.name %></td>
         <td><%= element.album.artiste.nom %></td>
-        <td><%= link_to "C'est fait", changerListe_path(:id => element.id), :method => :post %></td>
-        <td><%= link_to "Supprimer", supprimerListe_path(:id => element.id), :method => :delete, :confirm => "Êtes-vous sûr de vouloir supprimer  #{element.album.name} de la liste?" %></td>
+        <td><%= link_to "C'est fait!", changerListe_path(:id => element.id),:class => "btn btn-danger btn-sm", :method => :post %></td>
+        <td><%= link_to "Supprimer", supprimerListe_path(:id_user => current_user.id, :id_album => element.album.id, :typeListe=>2), :method => :delete, :class => "btn btn-danger btn-sm", :confirm => "Êtes-vous sûr de vouloir supprimer  #{element.album.name} de la liste?" %></td>
       </tr>
   <%end%>
 

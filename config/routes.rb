@@ -1,7 +1,7 @@
 CDCollection::Application.routes.draw do
   root :to=>"home#index"
   resources :ratings, only: :update
-  resources :users
+  #resources :users
   resources :ligneliste, only: :create
 
   get "profil/show"

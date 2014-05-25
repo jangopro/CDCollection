@@ -1,7 +1,15 @@
 -> Validation de confirmation mot de passe
--> Validation longueur Username
--> Suppression dans les listes
 -> Mettre en ligne
 -> Les .5 des notes
--> Pas Ep, pas de titre
 -> Message d'erreur en français
+-> Pas connecté, pas d'accès
+-> X Collection
+
+------
+CSS
+
+-> Étoile moyenne usager rouge
+-> Bloc albums
+-> Rajouter étoiles à côté de la note dans profil
+-> Bien aligné tableau
+-> Bloc Header

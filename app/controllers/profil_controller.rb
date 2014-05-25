@@ -7,11 +7,11 @@ class ProfilController < ApplicationController
   end
 
   def collection
-    @liste = LigneListe.where(:user_id => current_user.id, :typeListe => 1).all
+    @liste = LigneListe.where(:user_id => current_user.id, :typeListe => 1).joins(:album).order("albums.name").all
   end
 
   def wantlist
-    @liste = LigneListe.where(:user_id => current_user.id, :typeListe => 2).all
+    @liste = LigneListe.where(:user_id => current_user.id, :typeListe => 2).joins(:album).order("albums.name").all
   end
 
   def suppRating

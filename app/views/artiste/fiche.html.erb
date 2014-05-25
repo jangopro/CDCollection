@@ -1,66 +1,77 @@
 <h2><%= @artiste.nom %></h2>
 
 <h3>LP</h3>
-<div class="liste-albums">
+<div class="row">
   <% @albums.each do |album| %>
-      <div>
+      <div class="col-md-4 container">
         <%  rating = album.get_rating(album.id, current_user.id)%>
-            <img src="/assets/albums/<%= album.id %>.jpg" width="125">
-            <h4><%= album.name %></h4>
-               <%= album.anneeSortie %><br />
-          <p>Moyenne des usagers</p>
-          <div class="star" data-score=<%= album.average_rating(album.id) %>>
-            <script>
-                $('.star').raty({
-                    readOnly: true,
-                    path: '/assets',
-                    score:  function() {
-                        return $(this).attr('data-score');
-                    }
-                });
-            </script>
-          </div>
-          <p>Ma note</p>
-          <div data-number= <%= rating.id %> data-score=  <%= rating.rating %> class="user_star">
-            <script>
-                 $('.user_star').raty({
-                    path: '/assets',
-                    half: true,
-                    score: function() {
-                        return $(this).attr('data-score');
-                    },
-                    click: function(score, evt) {
-                        $.ajax({
+        <h4><%= album.name %></h4>
+        <div class="pull-left">
+          <img  src="/assets/albums/<%= album.id %>.jpg" width="125"><br />
+          <%= if LigneListe.where(:user_id => current_user.id, :album_id => album.id, :typeListe => 1).blank?
+                link_to "+ Collection",{:controller=>"ligneliste", :action=>"create", :album_id=>album.id,
+                                        :user_id => current_user.id, :typeListe=>1, :id_artiste =>album.artiste_id}, :method=> :post, :class => "btn btn-default collection"
+              else
+                link_to "X Collection",{:controller=>"ligneliste", :action=>"destroy", :id_album=>album.id,
+                                        :id_user => current_user.id,  :typeListe => 1}, :method=> :delete, :class => "btn btn-danger collection"
+              end%><br />
+          <%= if LigneListe.where(:user_id => current_user.id, :album_id => album.id, :typeListe => 2).blank?
+                link_to "+ Plus tard",{:controller=>"ligneliste", :action=>"create", :album_id=>album.id,
+                                       :user_id => current_user.id, :typeListe=>2, :id_artiste =>album.artiste_id}, :method=> :post, :class => "btn btn-default"
+              else
+                link_to "X Plus tard",{:controller=>"ligneliste", :action=>"destroy", :id_album=>album.id,
+                                       :id_user => current_user.id, :typeListe => 2}, :method=> :delete, :class => "btn btn-primary"
+              end%>
+        </div>
 
-                            url: '/ratings/' +  $(this).attr('data-number'),
-                            type: 'PATCH',
-                            data: { rating: score }
-                        }).done(function (data){});
-                    }
-                 });
-            </script>
-          </div>
-            <%= if LigneListe.where(:user_id => current_user.id, :album_id => album.id, :typeListe => 1).blank?
-                  link_to "+ Collection",{:controller=>"ligneliste", :action=>"create", :album_id=>album.id,
-                                          :user_id => current_user.id, :typeListe=>1, :id_artiste =>album.artiste_id}, :method=> :post
-                else
-                    print ("X Collection")
-        end%><br />
-        <%= if LigneListe.where(:user_id => current_user.id, :album_id => album.id, :typeListe => 2).blank?
-             link_to "+ Plus tard",{:controller=>"ligneliste", :action=>"create", :album_id=>album.id,
-                                    :user_id => current_user.id, :typeListe=>2, :id_artiste =>album.artiste_id}, :method=> :post
-            else
-              print ("X Plus tard")
-            end%>
+            <div class="pull-right">
+
+              <%= album.anneeSortie %><br />
+              <p>Moyenne des usagers</p>
+              <div class="star" data-score=<%= album.average_rating(album.id) %>>
+                <script>
+                    $('.star').raty({
+                        readOnly: true,
+                        path: '/assets',
+                        score:  function() {
+                            return $(this).attr('data-score');
+                        }
+                    });
+                </script>
+              </div>
+              <p>Ma note</p>
+              <div data-number= <%= rating.id %> data-score=  <%= rating.rating %> class="user_star">
+                <script>
+                    $('.user_star').raty({
+                        path: '/assets',
+                        half: true,
+                        score: function() {
+                            return $(this).attr('data-score');
+                        },
+                        click: function(score, evt) {
+                            $.ajax({
+
+                                url: '/ratings/' +  $(this).attr('data-number'),
+                                type: 'PATCH',
+                                data: { rating: score }
+                            }).done(function (data){});
+                        }
+                    });
+                </script>
+              </div>
+            </div>
+
+
       </div>
+
    <%end%>
 </div>
 <% if @eps.size != 0 %>
     <h3>EP</h3>
 
-    <div class="liste-albums">
+    <div class="row">
       <% @eps.each do |ep| %>
-          <div>
+          <div class="col-md-4">
               <%  rating = ep.get_rating(ep.id, current_user.id)%>
               <img src="/assets/albums/<%= ep.id %>.jpg" width="125">
               <h4><%= ep.name %></h4>

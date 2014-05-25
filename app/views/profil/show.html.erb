@@ -13,7 +13,7 @@
         <% if @titreRating != rating.rating %>
             </table>
             <h3><%= rating.rating %></h3>
-            <table>
+            <table class="table table-striped">
               <tr>
                 <th>Album</th>
                 <th>Artistes</th>
@@ -46,7 +46,7 @@
                       });
                   </script>
                 </div></td>
-                <td><%= link_to "Supprimer", suppRating_path(:id => rating.id), :confirm => "Êtes-vous sûr de vouloir supprimer  #{rating.album.name} de la liste?", :method => :post %></td>
+                <td><%= link_to "Supprimer", suppRating_path(:id => rating.id), :confirm => "Êtes-vous sûr de vouloir supprimer  #{rating.album.name} de la liste?", :method => :post, :class => "btn btn-danger btn-sm" %></td>
               </tr>
 
       <%end%>

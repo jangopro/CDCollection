@@ -14,7 +14,7 @@ class LignelisteController < ApplicationController
 
   def destroy
     session[:return_to] ||= request.referer
-    @liste = LigneListe.find(params[:id])
+    @liste = LigneListe.where(:album_id => params[:id_album], :user_id => params[:id_user], :typeListe => params[:typeListe]).first
     @liste.destroy
     redirect_to session.delete(:return_to)
   end

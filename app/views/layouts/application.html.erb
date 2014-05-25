@@ -11,36 +11,47 @@
 </head>
 <body>
 <!--HEADER-->
-<!--<header class="navbar navbar-fixed-top navbar-inverse">
+<header>
+  <div class="page-header">
+    <div class="container">
+      <div>
+        <h1 class="pull-left">CDCollection</h1>
+      </div>
+        <p class="pull-right">
+          <% if current_user %>
+              Connecté en tant que <%= link_to(current_user.username, profil_path(:id => current_user.id))%>.
+              <%= link_to "Se déconnecter", signed_out_path %>
+          <% else %>
+              <%= link_to "S'inscrire", new_user_path %> or
+              <%= link_to "Se connecter", sign_in_path %>
+          <% end %>
+        </p>
+    </div>
+  </div>
   <div class="navbar-inner">
     <div class="container">
-      <h1>CDCollection</h1>
+      <div class="text-right">
+        <%= form_tag(artiste_index_path, method: "get")  do %>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Rechercher", :name => nil, :class => "btn btn-danger" %>
+        <% end %>
+      </div>
       <nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "Albums notés",'#' %></li>
-          <li><%= link_to "Ma collection", '#' %></li>
-          <li><%= link_to "À écouter plus tard",'#' %></li>
+        <ul class="list-inline text-center">
+          <li><%= link_to "Albums notés",profil_path(:id => current_user.id) %></li>|
+          <li><%= link_to "Ma collection", collection_path %></li>|
+          <li><%= link_to "À écouter plus tard",plus_tard_path %></li>
         </ul>
       </nav>
     </div>
   </div>
 
-</header>-->
+</header>
 
-<%= form_tag(artiste_index_path, method: "get") do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Rechercher", :name => nil %>
-<% end %>
 
-<p>
-  <% if current_user %>
-      Connecté en tant que <%= link_to(current_user.username, profil_path(:id => current_user.id))%>.
-      <%= link_to "Se déconnecter", signed_out_path %>
-  <% else %>
-      <%= link_to "S'inscrire", new_user_path %> or
-      <%= link_to "Se connecter", sign_in_path %>
-  <% end %>
-</p>
+
+
+
 
 <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
