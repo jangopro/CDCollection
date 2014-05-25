@@ -1,6 +1,5 @@
 -> Validation de confirmation mot de passe
 -> Mettre en ligne
--> Les .5 des notes
 -> Message d'erreur en français
 -> Pas connecté, pas d'accès
 
