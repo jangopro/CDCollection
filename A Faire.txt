@@ -3,13 +3,10 @@
 -> Les .5 des notes
 -> Message d'erreur en français
 -> Pas connecté, pas d'accès
--> X Collection
 
 ------
 CSS
 
--> Étoile moyenne usager rouge
 -> Bloc albums
--> Rajouter étoiles à côté de la note dans profil
 -> Bien aligné tableau
 -> Bloc Header
