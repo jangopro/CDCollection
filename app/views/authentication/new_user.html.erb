@@ -1,10 +1,10 @@
-<h2>S'inscrire</h2>
+<h2>Nouveau?</h2>
 <%= form_for @user, :as => :user, :url => new_user_path, :method => :post do |f| %>
-    <p>
+    <div>
       <%= f.label "Nom d'utilisateur:" %><br/>
       <%= f.text_field :username %>
       <%= show_field_error(@user, :username) %>
-    </p>
+    </div>
     <p>
       <%= f.label 'Courriel:' %><br/>
       <%= f.text_field :email %>
@@ -21,6 +21,6 @@
       <%= show_field_error(@user, :password_confirmation) %>
     </p>
     <p>
-      <%= f.submit "S'inscrire" %>&nbsp;&nbsp;&nbsp;
+      <%= f.submit "S'inscrire" , :class => "btn btn-danger" %>&nbsp;&nbsp;&nbsp;
     </p>
 <% end %>

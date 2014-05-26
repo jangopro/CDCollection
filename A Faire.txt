@@ -1,7 +1,5 @@
 -> Validation de confirmation mot de passe
 -> Mettre en ligne
--> Message d'erreur en français
--> Pas connecté, pas d'accès
 
 ------
 CSS
@@ -9,3 +7,8 @@ CSS
 -> Bloc albums
 -> Bien aligné tableau
 -> Bloc Header
+
+----
+-> Mise en ligne
+-> Cahier de projet
+

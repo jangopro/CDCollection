@@ -6,19 +6,19 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
 
   #validation de nom d'utilisateur
-  validates_uniqueness_of :username
-  validates_length_of :username, :minimum => 4, :maximum => 12
+  validates_uniqueness_of :username, :message => 'Ce nom est deja utilise'
+  validates_length_of :username, :minimum => 4, :maximum => 12, :message => "Doit avoir entre 4 et 12 caracteres"
   validates_presence_of :username, :on => :create
 
   #validation de mot de passe
   validates :password, length: { minimum: 6 },:presence => true, :confirmation => true
-  validates :password_confirmation, :presence => true, :if => '!password.nil?'
+
 
 
   #validation de courriel
-  validates_presence_of :email, :on => :create
-  validates_uniqueness_of :email
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_presence_of :email, :on => :create, :message => 'Ce champ est requis'
+  validates_uniqueness_of :email, :message => "Ce courriel est deja utilise"
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :message => "Ce courriel n'est pas valide"
 
 
 

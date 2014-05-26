@@ -21,8 +21,7 @@ class AuthenticationController < ApplicationController
 
     if user
       session[:user_id] = user.id
-      flash[:notice] = 'Welcome.'
-      redirect_to :root
+      redirect_to profil_path(:id => current_user.id)
     else
       flash.now[:error] = 'Unknown user. Please check your username and password.'
       render :action => "sign_in"
@@ -40,8 +39,7 @@ class AuthenticationController < ApplicationController
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
-      flash[:notice] = 'Welcome.'
-      redirect_to :root
+      redirect_to profil_path(:id => current_user.id)
     else
       render :action => "new_user"
     end
@@ -49,7 +47,6 @@ class AuthenticationController < ApplicationController
 
   def signed_out
     session[:user_id] = nil
-    flash[:notice] = "You have been signed out."
     redirect_to :root
   end
 

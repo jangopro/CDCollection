@@ -1,16 +1,14 @@
 <div class="center hero-unit">
-    <h2 class="form-signin-heading">Connexion</h2>
+    <h2 class="form-signin-heading">Déjà inscrit?</h2>
     <%= form_for @user, :as => :user, :url => sign_in_path(@user) do |f| %>
+          <%= f.label "nom d'utilisateur:" %><br />
+          <%= f.text_field :username, :required => true %>
         <p>
-          <%= f.label 'username or email:' %><br />
-          <%= f.text_field :username %>
+          <%= f.label 'mot de passe:' %><br />
+          <%= f.password_field :password, :required => true %>
         </p>
         <p>
-          <%= f.label 'password:' %><br />
-          <%= f.password_field :password %>
-        </p>
-        <p>
-          <%= f.submit 'Sign In' %>&nbsp;&nbsp;&nbsp;
+          <%= f.submit 'Se connecter', :class => "btn btn-danger" %>&nbsp;&nbsp;&nbsp;
         </p>
     <% end %>
 </div>

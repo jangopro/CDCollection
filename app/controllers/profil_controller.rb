@@ -1,7 +1,7 @@
 class ProfilController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @rating = Rating.where("rating != 0", :user_id => current_user.id).order(rating: :desc)
+    @rating = Rating.where(:user_id => current_user.id).where.not(:rating => 0).order(rating: :desc)
     @collection =  LigneListe.where(:user_id => current_user.id, :typeListe => 1).all
     @plustard = LigneListe.where(:user_id => current_user.id, :typeListe => 2).all
   end
