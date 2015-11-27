@@ -1,5 +1,8 @@
 -> Validation de confirmation mot de passe
--> Mettre en ligne
+-> Devise
+-> Mixer le sign-in et le sign-up sur la même page?
+-> Trouver du contenu sur la page d'accueil
+-> Images, les renommer pas avec le id de l'album plus comme 11_rush.jpg
 
 ------
 CSS
@@ -7,8 +10,19 @@ CSS
 -> Bloc albums
 -> Bien aligné tableau
 -> Bloc Header
+-> Upgrader Bootstrap
+-> Sass avec tes scss
+-> Changer hero-unit pour jumbotron
 
-----
--> Mise en ligne
--> Cahier de projet
+-----
+JS
+
+-> Upgrader Bootstrap
+-> raty.min.js dans le dossier vendor
+
+---------
+HTML
+
+-> Utiliser plusieurs rows au lieu d'une seule -_- (ex:fiche.html.erb)
+
 
