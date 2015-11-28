@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140523174654) do
 
   create_table "ratings", force: true do |t|
     t.integer  "album_id"
-    t.double precision  "rating"
+    t.integer  "rating"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -11,7 +11,6 @@ CSS
 -> Bloc albums
 -> Bien aligné tableau
 -> Bloc Header
--> Upgrader Bootstrap
 -> Sass avec tes scss
 -> Changer hero-unit pour jumbotron
 -> Faire ménage dans application.css (Bootstrap-theme?)
@@ -20,7 +19,6 @@ CSS
 -----
 JS
 
--> Upgrader Bootstrap
 -> raty.min.js dans le dossier vendor
 -> Faire le ménage dans mon application.js
 
