@@ -4,6 +4,7 @@
 -> Trouver du contenu sur la page d'accueil
 -> Images, les renommer pas avec le id de l'album plus comme 11_rush.jpg
 -> Ratings à 0 lors de leur création
+-> Amène directement sur la page d'artiste si y'a un résultat
 
 ------
 CSS
