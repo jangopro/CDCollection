@@ -1,6 +1,7 @@
 class ArtisteController < ApplicationController
   def index
     @artistes = Artiste.search(params[:search])
+    redirect_to fiche_artiste_path(:id => 1) if @artistes.size == 1
   end
 
   def fiche
