@@ -33,7 +33,7 @@
                </script>
                </div>
             </td>
-            <td><%= link_to "Supprimer", supprimerListe_path(:id_user => current_user.id, :id_album => element.album.id, :typeListe=>1), :method => :delete, :class => "btn btn-danger btn-xs", :confirm => "Êtes-vous sûr de vouloir supprimer  #{element.album.name} de la liste?" %></td>
+            <td><%= link_to "Supprimer", supprimerListe_path(:id_user => current_user.id, :id_album => element.album.id, :typeListe=>1), :method => :delete, :confirm => "Êtes-vous sûr de vouloir supprimer  #{element.album.name} de la liste?" %></td>
           </tr>
       <%end%>
     </table>

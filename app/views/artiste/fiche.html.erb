@@ -4,69 +4,65 @@
 <hr />
 <div class="row">
   <% @albums.each do |album| %>
-      <div class="col-md-4 container">
+      <div class="col-sm-4 container">
         <%  rating = album.get_rating(album.id, current_user.id)%>
         <h4><%= album.name %></h4>
-        <div class="pull-left">
+        <div class="col-md-6 col-sm-4">
           <img  src="/assets/albums/<%= album.id %>.jpg" width="125"><br />
           <%= if LigneListe.where(:user_id => current_user.id, :album_id => album.id, :typeListe => 1).blank?
                 link_to "+ Collection",{:controller=>"ligneliste", :action=>"create", :album_id=>album.id,
-                                        :user_id => current_user.id, :typeListe=>1, :id_artiste =>album.artiste_id}, :method=> :post, :class => "btn btn-default collection"
+                                        :user_id => current_user.id, :typeListe=>1, :id_artiste =>album.artiste_id}, :method=> :post
               else
                 link_to "X Collection",{:controller=>"ligneliste", :action=>"destroy", :id_album=>album.id,
-                                        :id_user => current_user.id,  :typeListe => 1}, :method=> :delete, :class => "btn btn-danger collection"
+                                        :id_user => current_user.id,  :typeListe => 1}, :method=> :delete
               end%><br />
           <%= if LigneListe.where(:user_id => current_user.id, :album_id => album.id, :typeListe => 2).blank?
                 link_to "+ Plus tard",{:controller=>"ligneliste", :action=>"create", :album_id=>album.id,
-                                       :user_id => current_user.id, :typeListe=>2, :id_artiste =>album.artiste_id}, :method=> :post, :class => "btn btn-default"
+                                       :user_id => current_user.id, :typeListe=>2, :id_artiste =>album.artiste_id}, :method=> :post
               else
                 link_to "X Plus tard",{:controller=>"ligneliste", :action=>"destroy", :id_album=>album.id,
-                                       :id_user => current_user.id, :typeListe => 2}, :method=> :delete, :class => "btn btn-primary"
+                                       :id_user => current_user.id, :typeListe => 2}, :method=> :delete
               end%>
         </div>
 
-            <div class="pull-right">
+        <div class="col-md-6 col-sm-8">
+          <strong><%= album.anneeSortie %></strong><br />
+          Moyenne des usagers<br />
+          <div class="star" data-score=<%= album.average_rating(album.id) %>>
+            <script>
+                $('.star').raty({
+                    readOnly: true,
+                    path: '/assets',
+                    starOn: 'red-star-on.png',
+                    starHalf: 'red-star-half.png',
+                    score:  function() {
+                        return $(this).attr('data-score');
+                    }
+                });
+            </script>
+          </div>
+          Ma note<br />
+          <div data-number= <%= rating.id %> data-score=  <%= rating.rating %> class="user_star">
+            <script>
+                $('.user_star').raty({
+                    path: '/assets',
+                    half: true,
+                    score: function() {
+                        return $(this).attr('data-score');
+                    },
+                    click: function(score, evt) {
+                        $.ajax({
 
-              <strong><%= album.anneeSortie %></strong><br />
-              Moyenne des usagers<br />
-              <div class="star" data-score=<%= album.average_rating(album.id) %>>
-                <script>
-                    $('.star').raty({
-                        readOnly: true,
-                        path: '/assets',
-                        starOn: 'red-star-on.png',
-                        starHalf: 'red-star-half.png',
-                        score:  function() {
-                            return $(this).attr('data-score');
-                        }
-                    });
-                </script>
-              </div>
-              Ma note<br />
-              <div data-number= <%= rating.id %> data-score=  <%= rating.rating %> class="user_star">
-                <script>
-                    $('.user_star').raty({
-                        path: '/assets',
-                        half: true,
-                        score: function() {
-                            return $(this).attr('data-score');
-                        },
-                        click: function(score, evt) {
-                            $.ajax({
-
-                                url: '/ratings/' +  $(this).attr('data-number'),
-                                type: 'PATCH',
-                                data: { rating: score }
-                            }).done(function (data){});
-                        }
-                    });
-                </script>
-              </div>
-            </div>
-
-
+                            url: '/ratings/' +  $(this).attr('data-number'),
+                            type: 'PATCH',
+                            data: { rating: score }
+                        }).done(function (data){});
+                    }
+                });
+            </script>
+          </div>
+        </div>
       </div>
-
    <%end%>
 </div>
 <% if @eps.size != 0 %>
@@ -77,7 +73,7 @@
           <div class="col-md-4">
             <h4><%= ep.name %></h4>
               <%  rating = ep.get_rating(ep.id, current_user.id)%>
-            <div class="pull-left">
+            <div class="col-md-6 col-sm-4">
               <img  src="/assets/albums/<%= ep.id %>.jpg" width="125"><br />
               <%= if LigneListe.where(:user_id => current_user.id, :album_id => ep.id, :typeListe => 1).blank?
                     link_to "+ Collection",{:controller=>"ligneliste", :action=>"create", :album_id=>ep.id,
@@ -95,7 +91,7 @@
                   end%>
             </div>
 
-            <div class="pull-right">
+            <div class="col-md-6 col-sm-8">
               <strong><%= ep.anneeSortie %></strong><br />
             Moyenne des usagers<br />
             <div class="star" data-score=<%= ep.average_rating(ep.id) %>>

@@ -12,37 +12,35 @@
     <body>
         <!--HEADER-->
         <header>
-            <div class="page-header">
-                <div class="container">
-                    <% if current_user %>
-                        <div>
-                            <h1 class="pull-left"><%= link_to "CDCollection", profil_show_path(:id => current_user.id)%></h1>
-                        </div>
-                    <% else %>
-                          <div>
-                            <h1 class="pull-left"><%= link_to "CDCollection", root_path%></h1>
-                          </div>
-                    <% end %>
-                    <p class="pull-right">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
                         <% if current_user %>
-                            <%= link_to "Se déconnecter", signed_out_path, :class =>"btn btn-primary btn-xs"  %>
+                                <%= link_to "CDCollection", profil_show_path(:id => current_user.id), :class => "navbar-brand"%></h1>
+                        <% else %>
+                                <%= link_to "CDCollection", root_path, :class => "navbar-brand"%>
+                        <% end %>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if current_user %>
+                            <li><%= link_to "Se déconnecter", signed_out_path %></li>
                         <% end %>
                     </p>
                 </div>
-            </div>
+            </nav>
             <% if current_user %>
                 <div class="navbar-inner">
                     <div class="container">
                         <div class="text-right">
                             <%= form_tag(artiste_index_path, method: "get")  do %>
                                 <%= text_field_tag :search, params[:search] %>
-                                <%= submit_tag "Rechercher", :name => nil, :class => "btn btn-danger" %>
+                                <%= submit_tag "Rechercher", :name => nil, :class => "btn" %>
                             <% end %>
                         </div>
                         <nav>
                             <ul class="list-inline text-center">
-                                <li><%= link_to "Albums notés",profil_path(:id => current_user.id) %></li>|
-                                <li><%= link_to "Ma collection", collection_path %></li>|
+                                <li><%= link_to "Albums notés",profil_path(:id => current_user.id) %></li>
+                                <li><%= link_to "Ma collection", collection_path %></li>
                                 <li><%= link_to "À écouter plus tard",plus_tard_path %></li>
                             </ul>
                         </nav>
