@@ -5,8 +5,8 @@ class ArtisteController < ApplicationController
 
   def fiche
     @artiste =  Artiste.find(params[:id])
-    @albums = Album.find(:all, :conditions => ["artiste_id = ? AND typeAlbum = ?", @artiste.id, 1])
-    @eps = Album.find(:all, :conditions => ["artiste_id = ? AND typeAlbum = ?", @artiste.id, 2] )
+    @albums = Album.find(:all, :conditions => ["artiste_id = ? AND typeAlbum = ?", @artiste.id, 1], :order => 'anneeSortie DESC')
+    @eps = Album.find(:all, :conditions => ["artiste_id = ? AND typeAlbum = ?", @artiste.id, 2], :order => 'anneeSortie DESC')
   end
 
 end
