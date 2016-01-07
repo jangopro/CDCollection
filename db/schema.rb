@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 20140523174654) do
   create_table "albums", force: true do |t|
     t.string   "name"
     t.integer  "anneeSortie"
+    t.integer  "artiste_id"
+    t.integer  "typeAlbum"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

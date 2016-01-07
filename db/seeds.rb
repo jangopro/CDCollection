@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Artiste.create(nom: 'Rush')
+Album.create([{name: 'Moving Pictures', anneeSortie: 1981, artiste_id: 1, typeAlbum: 1}, 
+              {name: 'Rush', anneeSortie: 1974, artiste_id: 1, typeAlbum: 1},
+              {name: 'Fly By Night', anneeSortie: 1975, artiste_id: 1, typeAlbum: 1},
+              {name: 'Caress of Steel', anneeSortie: 1975, artiste_id: 1, typeAlbum: 1}])
