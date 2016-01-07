@@ -12,7 +12,7 @@ class Album < ActiveRecord::Base
 
 
   def average_rating(id_album)
-    @rating = Rating.where(album_id: id_album)
+    @rating = Rating.where(album_id: id_album).where.not(:rating => 0)
     if @rating.size != 0
       @rating.sum(:rating) / @rating.size
     else
