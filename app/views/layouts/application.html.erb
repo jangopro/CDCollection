@@ -13,7 +13,7 @@
         <!--HEADER-->
         <header>
             <nav class="navbar navbar-default">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="navbar-header">
                         <% if current_user %>
                                 <%= link_to "CDCollection", profil_show_path(:id => current_user.id), :class => "navbar-brand"%></h1>
@@ -21,9 +21,28 @@
                                 <%= link_to "CDCollection", root_path, :class => "navbar-brand"%>
                         <% end %>
                     </div>
+                    <div class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <%= form_tag(artiste_index_path, method: "get")  do %>
+                                <%= text_field_tag :search, params[:search] %>
+                                <%= submit_tag "Rechercher", :name => nil, :class => "btn" %>
+                            <% end %>
+                        </div>
+                    </div>
                     <ul class="nav navbar-nav navbar-right">
                         <% if current_user %>
-                            <li><%= link_to "Se déconnecter", signed_out_path %></li>
+                             <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username %><span class="caret"></span></a>
+                                  <ul class="dropdown-menu">
+                                   <li><%= link_to "Albums notés",profil_path(:id => current_user.id) %></li>
+                                    <li><%= link_to "Ma collection", collection_path %></li>
+                                    <li><%= link_to "À écouter plus tard",plus_tard_path %></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><%= link_to "Se déconnecter", signed_out_path %></li>
+                                  </ul>
+                                </li>
+                              </ul>
                         <% end %>
                     </p>
                 </div>
@@ -31,19 +50,7 @@
             <% if current_user %>
                 <div class="navbar-inner">
                     <div class="container">
-                        <div class="text-right">
-                            <%= form_tag(artiste_index_path, method: "get")  do %>
-                                <%= text_field_tag :search, params[:search] %>
-                                <%= submit_tag "Rechercher", :name => nil, :class => "btn" %>
-                            <% end %>
-                        </div>
-                        <nav>
-                            <ul class="list-inline text-center">
-                                <li><%= link_to "Albums notés",profil_path(:id => current_user.id) %></li>
-                                <li><%= link_to "Ma collection", collection_path %></li>
-                                <li><%= link_to "À écouter plus tard",plus_tard_path %></li>
-                            </ul>
-                        </nav>
+                        
                     </div>
                 </div>
             <% end %>
