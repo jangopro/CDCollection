@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140523174654) do
 
   create_table "ratings", force: true do |t|
     t.integer  "album_id"
-    t.integer  "rating"
+    t.column(:rating, :decimal ,precision: 2, scale: 1)
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
