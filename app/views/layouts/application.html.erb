@@ -30,16 +30,16 @@
                         </div>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
-                        <% if current_user %>
+                        <% if user_signed_in? %>
                              <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
-                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username %><span class="caret"></span></a>
+                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %><span class="caret"></span></a>
                                   <ul class="dropdown-menu">
                                    <li><%= link_to "Albums notés",profil_path(:id => current_user.id) %></li>
                                     <li><%= link_to "Ma collection", collection_path %></li>
                                     <li><%= link_to "À écouter plus tard",plus_tard_path %></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><%= link_to "Se déconnecter", signed_out_path %></li>
+                                    <li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %></li>
                                   </ul>
                                 </li>
                               </ul>
@@ -47,13 +47,6 @@
                     </p>
                 </div>
             </nav>
-            <% if current_user %>
-                <div class="navbar-inner">
-                    <div class="container">
-                        
-                    </div>
-                </div>
-            <% end %>
         </header>
 
         <% flash.each do |name, msg| %>

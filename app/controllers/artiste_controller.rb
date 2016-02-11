@@ -1,4 +1,5 @@
 class ArtisteController < ApplicationController
+  before_action :authenticate_user!
   def index
     @artistes = Artiste.search(params[:search])
     redirect_to fiche_artiste_path(:id => 1) if @artistes.size == 1
