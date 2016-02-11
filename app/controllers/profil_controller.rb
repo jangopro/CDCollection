@@ -1,4 +1,5 @@
 class ProfilController < ApplicationController
+  before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
     @rating = Rating.where(:user_id => current_user.id).where.not(:rating => 0).order(rating: :desc)
