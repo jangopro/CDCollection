@@ -21,11 +21,11 @@
                                 <%= link_to "CDCollection", root_path, :class => "navbar-brand"%>
                         <% end %>
                     </div>
-                    <div class="navbar-form navbar-left">
-                        <div class="form-group">
-                            <%= form_tag(artiste_index_path, method: "get")  do %>
-                                <%= text_field_tag :search, params[:search] %>
-                                <%= submit_tag "Rechercher", :name => nil, :class => "btn" %>
+                            <%= form_tag(artiste_index_path, method: "get", :class => "navbar-form navbar-left")  do %>
+                                <div class="form-group">
+                                    <%= text_field_tag :search, params[:search], :class => "form-control" %>
+                                    <%= submit_tag "Rechercher", :name => nil, :class => "btn btn-default" %>
+                                </div>
                             <% end %>
                         </div>
                     </div>
