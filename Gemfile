@@ -4,7 +4,7 @@ ruby '2.2.3'
 gem 'rails', '4.0.2'
 
 # Use postgresql as the database for Active Record
-gem 'sqlite3'
+gem 'mysql2', '~> 0.3.18'
 
 gem 'devise'
 

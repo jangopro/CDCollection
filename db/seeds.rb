@@ -11,6 +11,7 @@ Album.create([{name: 'Moving Pictures', anneeSortie: 1981, artiste_id: 1, typeAl
               {name: 'Rush', anneeSortie: 1974, artiste_id: 1, typeAlbum: 1},
               {name: 'Fly By Night', anneeSortie: 1975, artiste_id: 1, typeAlbum: 1},
               {name: 'Caress of Steel', anneeSortie: 1975, artiste_id: 1, typeAlbum: 1},
-              {name: '10,000 Days', anneeSortie: 2006, artiste_id: 2, typeAlbum: 1},
-              {name: 'Lateralus', anneeSortie: 2001, artiste_id: 2, typeAlbum: 1},
-              {name: 'Opiate', anneeSortie: 1992, artiste_id: 2, typeAlbum: 2}])
+              {name: 'Hybrid Theory', anneeSortie: 2001, artiste_id: 2, typeAlbum: 1},
+              {name: '10,000 Days', anneeSortie: 2006, artiste_id: 3, typeAlbum: 1},
+              {name: 'Lateralus', anneeSortie: 2001, artiste_id: 3, typeAlbum: 1},
+              {name: 'Opiate', anneeSortie: 1992, artiste_id: 3, typeAlbum: 2}])
